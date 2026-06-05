@@ -1,0 +1,1355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AirlineTopDeals — Premium Flight Deals & Coupons</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --blue:#005B7F;--navy:#00384F;--sky:#28BDEB;--orange:#F59E0B;
+  --green:#16A34A;--bg:#F5F8FA;--dark:#1F2937;--white:#fff;
+  --light-blue:#E8F6FC;--border:#E2EBF0;--muted:#6B7E8F;
+}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--dark);overflow-x:hidden}
+h1,h2,h3,h4,h5{font-family:'Sora',sans-serif}
+a{text-decoration:none;color:inherit}
+img{max-width:100%}
+
+/* ─── HEADER ─── */
+header{position:sticky;top:0;z-index:100;background:var(--navy);box-shadow:0 2px 20px rgba(0,56,79,.3)}
+.header-top{display:flex;align-items:center;justify-content:space-between;padding:0 2rem;height:64px;gap:1rem}
+.logo{display:flex;align-items:center;gap:.5rem;flex-shrink:0}
+.logo-icon{width:36px;height:36px;background:linear-gradient(135deg,var(--sky),var(--orange));border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px}
+.logo-text{font-family:'Sora',sans-serif;font-size:1.1rem;font-weight:700;color:#fff;line-height:1.1}
+.logo-text span{color:var(--sky);display:block;font-size:.7rem;font-weight:400;letter-spacing:.05em}
+.header-search{flex:1;max-width:380px;position:relative}
+.header-search input{width:100%;padding:.5rem 1rem .5rem 2.5rem;border-radius:50px;border:1.5px solid rgba(255,255,255,.15);background:rgba(255,255,255,.1);color:#fff;font-size:.875rem;outline:none;font-family:'DM Sans',sans-serif}
+.header-search input::placeholder{color:rgba(255,255,255,.5)}
+.header-search input:focus{border-color:var(--sky);background:rgba(255,255,255,.15)}
+.search-icon{position:absolute;left:.75rem;top:50%;transform:translateY(-50%);color:rgba(255,255,255,.5);font-size:.875rem}
+.header-actions{display:flex;align-items:center;gap:.75rem;flex-shrink:0}
+.btn-ghost{color:rgba(255,255,255,.8);font-size:.8125rem;padding:.375rem .75rem;border-radius:6px;border:1px solid rgba(255,255,255,.2);background:transparent;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s}
+.btn-ghost:hover{background:rgba(255,255,255,.1);color:#fff}
+.btn-submit{background:linear-gradient(135deg,var(--orange),#E68A00);color:#fff;font-size:.8125rem;padding:.375rem 1rem;border-radius:6px;border:none;cursor:pointer;font-family:'Sora',sans-serif;font-weight:600;transition:all .2s}
+.btn-submit:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(245,158,11,.4)}
+
+nav{background:var(--blue);border-top:1px solid rgba(255,255,255,.1)}
+.nav-inner{display:flex;align-items:center;padding:0 2rem;gap:.25rem;overflow-x:auto;scrollbar-width:none}
+.nav-inner::-webkit-scrollbar{display:none}
+.nav-link{color:rgba(255,255,255,.8);font-size:.8125rem;padding:.625rem 1rem;white-space:nowrap;border-radius:4px;transition:all .2s;font-weight:500;display:flex;align-items:center;gap:.375rem}
+.nav-link:hover,.nav-link.active{color:#fff;background:rgba(255,255,255,.1)}
+.nav-link.active{color:var(--sky)}
+.nav-dot{width:5px;height:5px;background:var(--orange);border-radius:50%;display:inline-block}
+
+/* ─── HERO ─── */
+.hero{background:linear-gradient(135deg,var(--navy) 0%,#004A66 40%,#005B7F 70%,#0077A8 100%);position:relative;overflow:hidden;padding:4rem 2rem 5rem}
+.hero-bg{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.hero-circle{position:absolute;border-radius:50%;background:rgba(40,189,235,.07)}
+.hero-circle:nth-child(1){width:600px;height:600px;right:-200px;top:-200px}
+.hero-circle:nth-child(2){width:400px;height:400px;left:-100px;bottom:-150px}
+.hero-circle:nth-child(3){width:200px;height:200px;left:40%;top:10%;background:rgba(245,158,11,.06)}
+.hero-content{max-width:760px;margin:0 auto;text-align:center;position:relative;z-index:1}
+.hero-badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(40,189,235,.15);border:1px solid rgba(40,189,235,.3);color:var(--sky);font-size:.8rem;padding:.375rem 1rem;border-radius:50px;margin-bottom:1.5rem;font-weight:500}
+.hero h1{font-size:clamp(1.75rem,4vw,3rem);font-weight:800;color:#fff;line-height:1.2;margin-bottom:1rem}
+.hero h1 .accent{color:var(--sky)}
+.hero h1 .accent2{color:var(--orange)}
+.hero-sub{font-size:1.0625rem;color:rgba(255,255,255,.7);margin-bottom:2.5rem;line-height:1.7;max-width:560px;margin-left:auto;margin-right:auto}
+.hero-search{background:rgba(255,255,255,.08);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.15);border-radius:16px;padding:1.25rem;display:flex;flex-wrap:wrap;gap:.75rem;margin-bottom:2rem}
+.search-field{flex:1;min-width:160px;display:flex;flex-direction:column;gap:.375rem}
+.search-field label{font-size:.7rem;color:rgba(255,255,255,.6);font-weight:600;letter-spacing:.05em;text-transform:uppercase}
+.search-field select,.search-field input{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);border-radius:8px;padding:.625rem .875rem;color:#fff;font-size:.875rem;outline:none;font-family:'DM Sans',sans-serif;width:100%}
+.search-field select option{background:var(--navy);color:#fff}
+.search-field input::placeholder{color:rgba(255,255,255,.4)}
+.search-field select:focus,.search-field input:focus{border-color:var(--sky)}
+.search-btn{align-self:flex-end;background:linear-gradient(135deg,var(--sky),#1A9DD0);color:#fff;border:none;padding:.75rem 2rem;border-radius:10px;font-family:'Sora',sans-serif;font-weight:700;font-size:.9375rem;cursor:pointer;white-space:nowrap;transition:all .2s;display:flex;align-items:center;gap:.5rem}
+.search-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(40,189,235,.4)}
+.hero-ctas{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.cta-primary{background:linear-gradient(135deg,var(--orange),#E68A00);color:#fff;padding:.75rem 2rem;border-radius:10px;font-family:'Sora',sans-serif;font-weight:700;font-size:.9375rem;border:none;cursor:pointer;transition:all .2s}
+.cta-primary:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(245,158,11,.4)}
+.cta-outline{background:transparent;color:#fff;padding:.75rem 2rem;border-radius:10px;font-family:'Sora',sans-serif;font-weight:600;font-size:.9375rem;border:2px solid rgba(255,255,255,.3);cursor:pointer;transition:all .2s}
+.cta-outline:hover{border-color:rgba(255,255,255,.7);background:rgba(255,255,255,.08)}
+.hero-stats{display:flex;gap:2.5rem;justify-content:center;margin-top:2.5rem;flex-wrap:wrap}
+.stat{text-align:center}
+.stat-num{font-family:'Sora',sans-serif;font-size:1.5rem;font-weight:800;color:#fff}
+.stat-label{font-size:.75rem;color:rgba(255,255,255,.6);margin-top:.125rem}
+
+/* ─── SECTION BASICS ─── */
+.section{padding:4rem 2rem}
+.section-header{text-align:center;margin-bottom:2.5rem}
+.section-tag{display:inline-block;background:var(--light-blue);color:var(--blue);font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.375rem .875rem;border-radius:50px;margin-bottom:.875rem}
+.section h2{font-size:clamp(1.5rem,3vw,2rem);font-weight:800;color:var(--navy);margin-bottom:.625rem}
+.section-sub{color:var(--muted);font-size:.9375rem;max-width:520px;margin:0 auto}
+.container{max-width:1200px;margin:0 auto}
+
+/* ─── FEATURED SLIDER ─── */
+.featured-bg{background:linear-gradient(180deg,#fff 0%,var(--bg) 100%)}
+.slider-wrapper{overflow:hidden;position:relative}
+.slider-track{display:flex;gap:1.25rem;transition:transform .5s cubic-bezier(.4,0,.2,1);will-change:transform}
+.coupon-card{background:#fff;border-radius:16px;border:1.5px solid var(--border);padding:1.25rem;min-width:260px;flex-shrink:0;position:relative;overflow:hidden;transition:all .3s;cursor:pointer}
+.coupon-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--blue),var(--sky))}
+.coupon-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,91,127,.12);border-color:var(--sky)}
+.coupon-card.featured::before{background:linear-gradient(90deg,var(--orange),#FFB800)}
+.airline-logo-wrap{display:flex;align-items:center;gap:.75rem;margin-bottom:1rem}
+.airline-logo{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:'Sora',sans-serif;font-size:.65rem;font-weight:800;color:#fff;flex-shrink:0}
+.airline-name{font-weight:700;font-size:.9rem;color:var(--navy)}
+.airline-route{font-size:.75rem;color:var(--muted);margin-top:.125rem}
+.deal-title{font-weight:700;font-size:1.1rem;color:var(--navy);margin-bottom:.375rem;line-height:1.3}
+.deal-badge{display:inline-flex;align-items:center;gap:.375rem;background:#ECFDF5;color:var(--green);font-size:.7rem;font-weight:700;padding:.25rem .625rem;border-radius:50px;margin-bottom:.625rem}
+.deal-meta{display:flex;gap:.875rem;margin-bottom:1rem}
+.meta-item{display:flex;align-items:center;gap:.25rem;font-size:.7rem;color:var(--muted)}
+.success-bar{background:#F0F9FF;border-radius:50px;height:6px;margin-bottom:.875rem;overflow:hidden}
+.success-fill{height:100%;border-radius:50px;background:linear-gradient(90deg,var(--sky),var(--green));transition:width .8s ease}
+.success-label{display:flex;justify-content:space-between;font-size:.7rem;color:var(--muted);margin-top:.25rem;margin-bottom:.875rem}
+.redeem-btn{width:100%;background:linear-gradient(135deg,var(--blue),var(--navy));color:#fff;border:none;padding:.625rem;border-radius:8px;font-family:'Sora',sans-serif;font-weight:600;font-size:.8125rem;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:.5rem}
+.redeem-btn:hover{background:linear-gradient(135deg,var(--sky),var(--blue));transform:translateY(-1px)}
+.redeem-btn.orange{background:linear-gradient(135deg,var(--orange),#E68A00)}
+.redeem-btn.orange:hover{box-shadow:0 4px 12px rgba(245,158,11,.4)}
+.slider-controls{display:flex;align-items:center;justify-content:center;gap:.75rem;margin-top:1.5rem}
+.slider-btn{width:36px;height:36px;border-radius:50%;border:1.5px solid var(--border);background:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--navy);transition:all .2s;font-size:1rem}
+.slider-btn:hover{background:var(--navy);color:#fff;border-color:var(--navy)}
+.slider-dots{display:flex;gap:.5rem}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--border);cursor:pointer;transition:all .2s}
+.dot.active{background:var(--blue);width:24px;border-radius:50px}
+
+/* ─── AIRLINES ─── */
+.airlines-bg{background:#fff}
+.airlines-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:1rem}
+.airline-card{background:var(--bg);border:1.5px solid var(--border);border-radius:12px;padding:1rem;text-align:center;cursor:pointer;transition:all .3s;position:relative}
+.airline-card:hover{border-color:var(--sky);background:#fff;transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,91,127,.1)}
+.airline-card-logo{width:56px;height:56px;border-radius:12px;margin:0 auto .625rem;display:flex;align-items:center;justify-content:center;font-family:'Sora',sans-serif;font-size:.8rem;font-weight:800;color:#fff}
+.airline-card-name{font-size:.8rem;font-weight:700;color:var(--navy);margin-bottom:.25rem}
+.airline-card-count{font-size:.7rem;color:var(--muted)}
+.airline-card .badge{position:absolute;top:.5rem;right:.5rem;background:var(--orange);color:#fff;font-size:.6rem;font-weight:700;padding:.125rem .375rem;border-radius:50px}
+
+/* ─── DEALS GRID ─── */
+.deals-bg{background:var(--bg)}
+.deals-filters{display:flex;gap:.625rem;flex-wrap:wrap;margin-bottom:2rem;align-items:center}
+.filter-btn{padding:.4375rem 1rem;border-radius:50px;border:1.5px solid var(--border);background:#fff;font-size:.8rem;font-weight:500;color:var(--muted);cursor:pointer;transition:all .2s;font-family:'DM Sans',sans-serif}
+.filter-btn:hover,.filter-btn.active{background:var(--blue);color:#fff;border-color:var(--blue)}
+.filter-label{font-size:.8125rem;font-weight:600;color:var(--navy);margin-right:.25rem}
+.deals-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.25rem}
+.deal-card{background:#fff;border-radius:16px;border:1.5px solid var(--border);overflow:hidden;transition:all .3s;cursor:pointer}
+.deal-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,91,127,.1);border-color:var(--sky)}
+.deal-img{height:160px;background:linear-gradient(135deg,var(--navy),var(--blue));position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.deal-img-emoji{font-size:3.5rem;opacity:.6}
+.deal-img-overlay{position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.4) 0%,transparent 60%)}
+.deal-type-badge{position:absolute;top:.75rem;left:.75rem;padding:.25rem .625rem;border-radius:50px;font-size:.6875rem;font-weight:700;letter-spacing:.03em}
+.deal-type-badge.promo{background:var(--orange);color:#fff}
+.deal-type-badge.deal{background:var(--green);color:#fff}
+.deal-type-badge.sale{background:var(--sky);color:#fff}
+.deal-price-badge{position:absolute;top:.75rem;right:.75rem;background:rgba(0,0,0,.6);color:#fff;font-family:'Sora',sans-serif;font-weight:800;font-size:.9rem;padding:.25rem .625rem;border-radius:8px}
+.deal-body{padding:1rem 1.25rem 1.25rem}
+.deal-airline-pill{display:inline-flex;align-items:center;gap:.375rem;font-size:.7rem;color:var(--blue);font-weight:600;background:var(--light-blue);padding:.25rem .625rem;border-radius:50px;margin-bottom:.625rem}
+.deal-card-title{font-weight:700;font-size:.9375rem;color:var(--navy);margin-bottom:.5rem;line-height:1.4}
+.deal-card-desc{font-size:.8rem;color:var(--muted);margin-bottom:.875rem;line-height:1.6}
+.deal-footer{display:flex;align-items:center;justify-content:space-between}
+.deal-stats{display:flex;gap.875rem;gap:.875rem}
+.deal-stat{display:flex;align-items:center;gap:.25rem;font-size:.7rem;color:var(--muted)}
+.success-pct{font-size:.8rem;font-weight:700;color:var(--green)}
+
+/* ─── CATEGORIES ─── */
+.categories-bg{background:#fff}
+.categories-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:1rem}
+.cat-card{border-radius:16px;padding:1.5rem 1rem;text-align:center;cursor:pointer;transition:all .3s;position:relative;overflow:hidden;border:1.5px solid transparent}
+.cat-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,.08);border-color:rgba(255,255,255,.4)}
+.cat-icon{width:52px;height:52px;border-radius:14px;margin:0 auto 1rem;display:flex;align-items:center;justify-content:center;font-size:1.5rem;background:rgba(255,255,255,.25)}
+.cat-name{font-family:'Sora',sans-serif;font-weight:700;font-size:.875rem;color:#fff;margin-bottom:.25rem}
+.cat-count{font-size:.75rem;color:rgba(255,255,255,.75)}
+
+/* ─── ATTRACTIONS ─── */
+.attractions-bg{background:var(--bg)}
+.attractions-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.25rem}
+.attr-card{border-radius:20px;overflow:hidden;cursor:pointer;transition:all .3s;position:relative;height:240px;display:flex;align-items:flex-end}
+.attr-card:hover{transform:translateY(-4px);box-shadow:0 20px 48px rgba(0,0,0,.2)}
+.attr-bg{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:5rem}
+.attr-overlay{position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.75) 0%,rgba(0,0,0,.1) 60%,transparent 100%)}
+.attr-content{position:relative;z-index:1;padding:1.25rem;width:100%}
+.attr-region{font-size:.7rem;color:rgba(255,255,255,.7);font-weight:600;letter-spacing:.05em;text-transform:uppercase;margin-bottom:.25rem}
+.attr-name{font-family:'Sora',sans-serif;font-weight:800;font-size:1.125rem;color:#fff;line-height:1.2;margin-bottom:.375rem}
+.attr-deals{display:inline-flex;align-items:center;gap:.375rem;background:var(--orange);color:#fff;font-size:.7rem;font-weight:700;padding:.25rem .625rem;border-radius:50px}
+
+/* ─── NEWSLETTER ─── */
+.newsletter-bg{background:linear-gradient(135deg,var(--navy) 0%,#005B7F 50%,#0077A8 100%);position:relative;overflow:hidden}
+.newsletter-bg::before{content:'';position:absolute;width:500px;height:500px;border-radius:50%;background:rgba(40,189,235,.07);right:-150px;top:-200px;pointer-events:none}
+.newsletter-inner{text-align:center;position:relative;z-index:1;max-width:560px;margin:0 auto;padding:4rem 2rem}
+.newsletter-inner h2{font-size:clamp(1.5rem,3vw,2rem);font-weight:800;color:#fff;margin-bottom:.75rem}
+.newsletter-inner p{color:rgba(255,255,255,.7);margin-bottom:2rem;font-size:.9375rem;line-height:1.7}
+.newsletter-form{display:flex;gap:.75rem;max-width:440px;margin:0 auto}
+.newsletter-input{flex:1;background:rgba(255,255,255,.1);border:1.5px solid rgba(255,255,255,.2);border-radius:10px;padding:.75rem 1rem;color:#fff;font-size:.9rem;outline:none;font-family:'DM Sans',sans-serif}
+.newsletter-input::placeholder{color:rgba(255,255,255,.4)}
+.newsletter-input:focus{border-color:var(--sky)}
+.newsletter-submit{background:linear-gradient(135deg,var(--orange),#E68A00);color:#fff;border:none;padding:.75rem 1.5rem;border-radius:10px;font-family:'Sora',sans-serif;font-weight:700;cursor:pointer;white-space:nowrap;transition:all .2s}
+.newsletter-submit:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(245,158,11,.5)}
+.newsletter-trust{display:flex;gap:1.5rem;justify-content:center;margin-top:1.5rem;flex-wrap:wrap}
+.trust-item{display:flex;align-items:center;gap:.375rem;color:rgba(255,255,255,.65);font-size:.8rem}
+.trust-dot{width:6px;height:6px;background:var(--sky);border-radius:50%}
+
+/* ─── BLOG ─── */
+.blog-bg{background:#fff}
+.blog-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.25rem}
+.blog-card{border-radius:16px;overflow:hidden;border:1.5px solid var(--border);background:#fff;cursor:pointer;transition:all .3s}
+.blog-card:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,91,127,.1);border-color:var(--sky)}
+.blog-img{height:180px;background:linear-gradient(135deg,#1a1a2e,#16213e);display:flex;align-items:center;justify-content:center;font-size:3rem;position:relative}
+.blog-cat-tag{position:absolute;top:.75rem;left:.75rem;background:var(--blue);color:#fff;font-size:.65rem;font-weight:700;padding:.25rem .625rem;border-radius:50px;letter-spacing:.04em;text-transform:uppercase}
+.blog-body{padding:1.25rem}
+.blog-meta{display:flex;align-items:center;gap.75rem;gap:.75rem;margin-bottom:.625rem}
+.blog-date{font-size:.75rem;color:var(--muted);display:flex;align-items:center;gap:.25rem}
+.blog-read{font-size:.75rem;color:var(--sky);font-weight:600}
+.blog-title{font-weight:700;font-size:.9375rem;color:var(--navy);line-height:1.4;margin-bottom:.5rem}
+.blog-excerpt{font-size:.8rem;color:var(--muted);line-height:1.6}
+
+/* ─── FOOTER ─── */
+footer{background:var(--navy);color:rgba(255,255,255,.75)}
+.footer-main{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:2.5rem;padding:3rem 2rem;max-width:1200px;margin:0 auto}
+.footer-brand .logo-text{font-size:1.25rem;margin-bottom:.875rem}
+.footer-about{font-size:.8125rem;line-height:1.7;color:rgba(255,255,255,.6);max-width:260px;margin-bottom:1.25rem}
+.footer-socials{display:flex;gap:.625rem}
+.social-btn{width:34px;height:34px;border-radius:8px;background:rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.7);font-size:.8125rem;cursor:pointer;transition:all .2s;border:none}
+.social-btn:hover{background:var(--sky);color:#fff}
+.footer-col h4{font-family:'Sora',sans-serif;font-size:.875rem;font-weight:700;color:#fff;margin-bottom:1.125rem}
+.footer-links{list-style:none;display:flex;flex-direction:column;gap:.5rem}
+.footer-links li a{font-size:.8125rem;color:rgba(255,255,255,.55);transition:color .2s}
+.footer-links li a:hover{color:var(--sky)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.1);padding:1.25rem 2rem;max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:gap}
+.footer-copy{font-size:.8rem;color:rgba(255,255,255,.4)}
+.footer-badges{display:flex;gap:.75rem}
+.footer-badge{font-size:.7rem;color:rgba(255,255,255,.4);padding:.25rem .625rem;border:1px solid rgba(255,255,255,.1);border-radius:4px}
+
+/* ─── WHATSAPP BTN ─── */
+.whatsapp-fab{position:fixed;bottom:1.5rem;right:1.5rem;width:52px;height:52px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.5rem;cursor:pointer;box-shadow:0 4px 20px rgba(37,211,102,.4);z-index:99;transition:all .2s;border:none;color:#fff}
+.whatsapp-fab:hover{transform:scale(1.1)}
+
+/* ─── PAGE VIEWS ─── */
+.page{display:none}
+.page.active{display:block}
+#page-home{display:block}
+
+/* ─── DEALS PAGE ─── */
+.deals-page-layout{display:grid;grid-template-columns:260px 1fr;gap:1.5rem;padding:2rem;max-width:1200px;margin:0 auto;align-items:start}
+.sidebar{background:#fff;border-radius:16px;border:1.5px solid var(--border);padding:1.25rem;position:sticky;top:80px}
+.sidebar h3{font-size:.9375rem;font-weight:700;color:var(--navy);margin-bottom:1rem;padding-bottom:.75rem;border-bottom:1.5px solid var(--border)}
+.sidebar-section{margin-bottom:1.5rem}
+.sidebar-label{font-size:.75rem;font-weight:700;color:var(--muted);letter-spacing:.05em;text-transform:uppercase;margin-bottom:.625rem}
+.checkbox-item{display:flex;align-items:center;gap:.5rem;margin-bottom:.375rem;cursor:pointer}
+.checkbox-item input{width:14px;height:14px;accent-color:var(--blue)}
+.checkbox-item span{font-size:.8125rem;color:var(--dark)}
+.sidebar-range{width:100%;accent-color:var(--blue);margin:.5rem 0}
+
+/* ─── SINGLE COUPON PAGE ─── */
+.coupon-page{max-width:900px;margin:0 auto;padding:2rem}
+.coupon-hero{background:linear-gradient(135deg,var(--navy),var(--blue));border-radius:20px;padding:2.5rem;color:#fff;margin-bottom:2rem;display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:center}
+.coupon-reveal-box{background:#fff;border-radius:12px;padding:1.5rem;text-align:center;min-width:200px}
+.coupon-code-hidden{font-family:'Sora',sans-serif;font-size:1.25rem;font-weight:800;color:var(--navy);letter-spacing:.15em;filter:blur(5px);transition:filter .3s;user-select:none;cursor:pointer}
+.coupon-code-hidden.revealed{filter:none;user-select:auto}
+.reveal-instruction{font-size:.75rem;color:var(--muted);margin-top:.375rem}
+
+/* ─── MODAL ─── */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:200;display:none;align-items:center;justify-content:center;padding:1rem}
+.modal-overlay.open{display:flex}
+.modal{background:#fff;border-radius:20px;padding:2rem;max-width:480px;width:100%;position:relative;animation:slideUp .3s ease}
+@keyframes slideUp{from{transform:translateY(20px);opacity:0}to{transform:translateY(0);opacity:1}}
+.modal-close{position:absolute;top:1rem;right:1rem;background:none;border:none;cursor:pointer;font-size:1.25rem;color:var(--muted);line-height:1}
+.modal h3{font-size:1.25rem;font-weight:800;color:var(--navy);margin-bottom.5rem;margin-bottom:.5rem}
+.coupon-code-box{background:var(--light-blue);border:2px dashed var(--sky);border-radius:10px;padding:1rem;text-align:center;margin:1rem 0}
+.coupon-code-text{font-family:'Sora',sans-serif;font-size:1.5rem;font-weight:800;color:var(--blue);letter-spacing:.2em}
+.copy-btn{background:var(--blue);color:#fff;border:none;padding:.625rem 1.5rem;border-radius:8px;font-family:'Sora',sans-serif;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:.5rem;margin:0 auto .75rem;transition:all .2s}
+.copy-btn:hover{background:var(--navy)}
+.copied-msg{display:none;color:var(--green);font-size:.875rem;font-weight:600;text-align:center;margin-bottom:.75rem}
+.modal-redeem-btn{width:100%;background:linear-gradient(135deg,var(--orange),#E68A00);color:#fff;border:none;padding:.875rem;border-radius:10px;font-family:'Sora',sans-serif;font-weight:700;font-size:1rem;cursor:pointer;transition:all .2s}
+.modal-redeem-btn:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(245,158,11,.4)}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:768px){
+  .header-top{padding:0 1rem;gap:.5rem}
+  .header-search{display:none}
+  .hero{padding:2.5rem 1rem 3.5rem}
+  .hero-stats{gap:1.5rem}
+  .section{padding:3rem 1rem}
+  .footer-main{grid-template-columns:1fr 1fr;gap:1.5rem}
+  .deals-page-layout{grid-template-columns:1fr}
+  .sidebar{position:static}
+  .coupon-hero{grid-template-columns:1fr}
+  .newsletter-form{flex-direction:column}
+  .hero-search{flex-direction:column}
+  .search-btn{width:100%;justify-content:center}
+}
+</style>
+</head>
+<body>
+
+<!-- ══════ HEADER ══════ -->
+<header>
+  <div class="header-top">
+    <div class="logo" onclick="showPage('home')" style="cursor:pointer">
+      <div class="logo-icon">✈️</div>
+      <div class="logo-text">
+        AirlineTopDeals
+        <span>Premium Travel Coupons</span>
+      </div>
+    </div>
+    <div class="header-search">
+      <span class="search-icon">🔍</span>
+      <input type="text" placeholder="Search airlines, deals, destinations...">
+    </div>
+    <div class="header-actions">
+      <button class="btn-ghost" onclick="showPage('login')">Login</button>
+      <button class="btn-ghost" onclick="showPage('register')">Register</button>
+      <button class="btn-submit" onclick="showPage('share')">+ Submit Deal</button>
+    </div>
+  </div>
+  <nav>
+    <div class="nav-inner">
+      <a class="nav-link active" onclick="showPage('home')">🏠 Home</a>
+      <a class="nav-link" onclick="showPage('deals')">🏷️ Deals</a>
+      <a class="nav-link" onclick="showPage('stores')">🏪 Airlines</a>
+      <a class="nav-link" onclick="showPage('categories')">📂 Categories</a>
+      <a class="nav-link" onclick="showPage('attractions')">🗺️ Attractions</a>
+      <a class="nav-link" onclick="showPage('blog')">📰 Travel News</a>
+      <a class="nav-link" onclick="showPage('share')">📤 Share Coupon</a>
+      <a class="nav-link" onclick="showPage('contact')">✉️ Contact</a>
+    </div>
+  </nav>
+</header>
+
+<!-- ══════ HOME PAGE ══════ -->
+<div class="page active" id="page-home">
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg">
+    <div class="hero-circle"></div>
+    <div class="hero-circle"></div>
+    <div class="hero-circle"></div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-badge">✈️ &nbsp;500+ Active Deals Updated Daily</div>
+    <h1>Find the Best <span class="accent">Airline Deals,</span><br>Coupons & <span class="accent2">Flight Discounts</span></h1>
+    <p class="hero-sub">Save more on flights, travel packages, attractions, and vacation deals from top airlines worldwide.</p>
+    <div class="hero-search">
+      <div class="search-field">
+        <label>From</label>
+        <select><option>Any Origin</option><option>New York (JFK)</option><option>London (LHR)</option><option>Dubai (DXB)</option><option>Singapore (SIN)</option><option>Los Angeles (LAX)</option></select>
+      </div>
+      <div class="search-field">
+        <label>To</label>
+        <select><option>Any Destination</option><option>Paris (CDG)</option><option>Tokyo (NRT)</option><option>Sydney (SYD)</option><option>Bangkok (BKK)</option><option>New York (JFK)</option></select>
+      </div>
+      <div class="search-field">
+        <label>Airline</label>
+        <select><option>All Airlines</option><option>Emirates</option><option>Qatar Airways</option><option>Singapore Airlines</option><option>KLM</option><option>Etihad Airways</option></select>
+      </div>
+      <div class="search-field">
+        <label>Category</label>
+        <select><option>All Categories</option><option>Promo Codes</option><option>Flight Deals</option><option>Hotel Packages</option><option>Student Discounts</option></select>
+      </div>
+      <button class="search-btn">🔍 Search Deals</button>
+    </div>
+    <div class="hero-ctas">
+      <button class="cta-primary" onclick="showPage('deals')">🏷️ Browse All Deals</button>
+      <button class="cta-outline" onclick="showPage('stores')">✈️ View Airlines</button>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-num">847+</div><div class="stat-label">Active Coupons</div></div>
+      <div class="stat"><div class="stat-num">48</div><div class="stat-label">Partner Airlines</div></div>
+      <div class="stat"><div class="stat-num">$2.4M</div><div class="stat-label">Saved by Users</div></div>
+      <div class="stat"><div class="stat-num">92%</div><div class="stat-label">Success Rate</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED COUPON SLIDER -->
+<section class="section featured-bg">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">🔥 Hot Right Now</div>
+      <h2>Featured Airline Coupons</h2>
+      <p class="section-sub">Hand-picked deals with the highest success rates — updated every 24 hours</p>
+    </div>
+    <div class="slider-wrapper">
+      <div class="slider-track" id="sliderTrack">
+
+        <div class="coupon-card featured" onclick="openCouponModal('EMI25OFF','Emirates','25% Off Business Class',25)">
+          <div class="airline-logo-wrap">
+            <div class="airline-logo" style="background:linear-gradient(135deg,#C8102E,#8B0000)">EK</div>
+            <div><div class="airline-name">Emirates</div><div class="airline-route">Dubai → Worldwide</div></div>
+          </div>
+          <div class="deal-badge">🔥 Top Deal</div>
+          <div class="deal-title">25% Off Business Class Flights</div>
+          <div class="deal-meta">
+            <span class="meta-item">📅 Expires Jun 30</span>
+            <span class="meta-item">👁 4,821 views</span>
+          </div>
+          <div class="success-bar"><div class="success-fill" style="width:93%"></div></div>
+          <div class="success-label"><span>Success Rate</span><span style="color:var(--green);font-weight:700">93%</span></div>
+          <button class="redeem-btn orange">🎟 Show Coupon Code</button>
+        </div>
+
+        <div class="coupon-card" onclick="openCouponModal('QR30ECON','Qatar Airways','30% Economy Saver',30)">
+          <div class="airline-logo-wrap">
+            <div class="airline-logo" style="background:linear-gradient(135deg,#5C0016,#8B1A2B)">QR</div>
+            <div><div class="airline-name">Qatar Airways</div><div class="airline-route">Doha → Asia & Europe</div></div>
+          </div>
+          <div class="deal-badge">✈️ Economy Saver</div>
+          <div class="deal-title">30% Off Economy Class Booking</div>
+          <div class="deal-meta">
+            <span class="meta-item">📅 Expires Jul 15</span>
+            <span class="meta-item">👁 3,142 views</span>
+          </div>
+          <div class="success-bar"><div class="success-fill" style="width:88%"></div></div>
+          <div class="success-label"><span>Success Rate</span><span style="color:var(--green);font-weight:700">88%</span></div>
+          <button class="redeem-btn">🎟 Show Coupon Code</button>
+        </div>
+
+        <div class="coupon-card featured" onclick="openCouponModal('SQ20PREM','Singapore Airlines','20% Premium Economy',20)">
+          <div class="airline-logo-wrap">
+            <div class="airline-logo" style="background:linear-gradient(135deg,#003366,#005599)">SQ</div>
+            <div><div class="airline-name">Singapore Airlines</div><div class="airline-route">Singapore → Global</div></div>
+          </div>
+          <div class="deal-badge">⭐ Premium Pick</div>
+          <div class="deal-title">20% Off Premium Economy Class</div>
+          <div class="deal-meta">
+            <span class="meta-item">📅 Expires Aug 1</span>
+            <span class="meta-item">👁 2,887 views</span>
+          </div>
+          <div class="success-bar"><div class="success-fill" style="width:91%"></div></div>
+          <div class="success-label"><span>Success Rate</span><span style="color:var(--green);font-weight:700">91%</span></div>
+          <button class="redeem-btn orange">🎟 Show Coupon Code</button>
+        </div>
+
+        <div class="coupon-card" onclick="openCouponModal('EY15ECO','Etihad Airways','15% Economy Deal',15)">
+          <div class="airline-logo-wrap">
+            <div class="airline-logo" style="background:linear-gradient(135deg,#7B6122,#B08B30)">EY</div>
+            <div><div class="airline-name">Etihad Airways</div><div class="airline-route">Abu Dhabi → Worldwide</div></div>
+          </div>
+          <div class="deal-badge">💎 Flash Sale</div>
+          <div class="deal-title">15% Off Economy Fares + Free Bag</div>
+          <div class="deal-meta">
+            <span class="meta-item">📅 Expires Jun 20</span>
+            <span class="meta-item">👁 1,943 views</span>
+          </div>
+          <div class="success-bar"><div class="success-fill" style="width:85%"></div></div>
+          <div class="success-label"><span>Success Rate</span><span style="color:var(--green);font-weight:700">85%</span></div>
+          <button class="redeem-btn">🎟 Show Coupon Code</button>
+        </div>
+
+        <div class="coupon-card" onclick="openCouponModal('KL20EUR','KLM','20% Europe Deals',20)">
+          <div class="airline-logo-wrap">
+            <div class="airline-logo" style="background:linear-gradient(135deg,#00A1E4,#0068A8)">KL</div>
+            <div><div class="airline-name">KLM Royal Dutch</div><div class="airline-route">Amsterdam → Europe</div></div>
+          </div>
+          <div class="deal-badge">🌍 Europe Sale</div>
+          <div class="deal-title">20% Off European Destinations</div>
+          <div class="deal-meta">
+            <span class="meta-item">📅 Expires Jul 30</span>
+            <span class="meta-item">👁 2,211 views</span>
+          </div>
+          <div class="success-bar"><div class="success-fill" style="width:82%"></div></div>
+          <div class="success-label"><span>Success Rate</span><span style="color:var(--green);font-weight:700">82%</span></div>
+          <button class="redeem-btn">🎟 Show Coupon Code</button>
+        </div>
+
+        <div class="coupon-card featured" onclick="openCouponModal('VA40INT','Virgin Atlantic','40% Int. Flights',40)">
+          <div class="airline-logo-wrap">
+            <div class="airline-logo" style="background:linear-gradient(135deg,#E2001A,#A00012)">VS</div>
+            <div><div class="airline-name">Virgin Atlantic</div><div class="airline-route">London → Americas</div></div>
+          </div>
+          <div class="deal-badge">🚀 Best Value</div>
+          <div class="deal-title">Up to 40% Off Transatlantic Flights</div>
+          <div class="deal-meta">
+            <span class="meta-item">📅 Expires Jun 25</span>
+            <span class="meta-item">👁 5,102 views</span>
+          </div>
+          <div class="success-bar"><div class="success-fill" style="width:95%"></div></div>
+          <div class="success-label"><span>Success Rate</span><span style="color:var(--green);font-weight:700">95%</span></div>
+          <button class="redeem-btn orange">🎟 Show Coupon Code</button>
+        </div>
+
+      </div>
+    </div>
+    <div class="slider-controls">
+      <button class="slider-btn" onclick="slideLeft()">◀</button>
+      <div class="slider-dots">
+        <div class="dot active" onclick="goToSlide(0)"></div>
+        <div class="dot" onclick="goToSlide(1)"></div>
+        <div class="dot" onclick="goToSlide(2)"></div>
+      </div>
+      <button class="slider-btn" onclick="slideRight()">▶</button>
+    </div>
+  </div>
+</section>
+
+<!-- POPULAR AIRLINES -->
+<section class="section airlines-bg">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">✈️ Top Airlines</div>
+      <h2>Popular Airline Stores</h2>
+      <p class="section-sub">Exclusive coupons and promo codes for the world's leading airlines</p>
+    </div>
+    <div class="airlines-grid">
+      <div class="airline-card" onclick="showPage('stores')">
+        <div class="airline-card-logo" style="background:linear-gradient(135deg,#C8102E,#8B0000)">EK</div>
+        <div class="airline-card-name">Emirates</div>
+        <div class="airline-card-count">42 deals</div>
+        <div class="badge">HOT</div>
+      </div>
+      <div class="airline-card" onclick="showPage('stores')">
+        <div class="airline-card-logo" style="background:linear-gradient(135deg,#5C0016,#8B1A2B)">QR</div>
+        <div class="airline-card-name">Qatar Airways</div>
+        <div class="airline-card-count">38 deals</div>
+      </div>
+      <div class="airline-card" onclick="showPage('stores')">
+        <div class="airline-card-logo" style="background:linear-gradient(135deg,#003366,#005599)">SQ</div>
+        <div class="airline-card-name">Singapore Air</div>
+        <div class="airline-card-count">31 deals</div>
+      </div>
+      <div class="airline-card" onclick="showPage('stores')">
+        <div class="airline-card-logo" style="background:linear-gradient(135deg,#00A1E4,#0068A8)">KL</div>
+        <div class="airline-card-name">KLM Royal Dutch</div>
+        <div class="airline-card-count">28 deals</div>
+      </div>
+      <div class="airline-card" onclick="showPage('stores')">
+        <div class="airline-card-logo" style="background:linear-gradient(135deg,#7B6122,#B08B30)">EY</div>
+        <div class="airline-card-name">Etihad Airways</div>
+        <div class="airline-card-count">25 deals</div>
+        <div class="badge">NEW</div>
+      </div>
+      <div class="airline-card" onclick="showPage('stores')">
+        <div class="airline-card-logo" style="background:linear-gradient(135deg,#003087,#CC0000)">MH</div>
+        <div class="airline-card-name">Malaysia Airlines</div>
+        <div class="airline-card-count">22 deals</div>
+      </div>
+      <div class="airline-card" onclick="showPage('stores')">
+        <div class="airline-card-logo" style="background:linear-gradient(135deg,#E2001A,#A00012)">VS</div>
+        <div class="airline-card-name">Virgin Atlantic</div>
+        <div class="airline-card-count">19 deals</div>
+        <div class="badge">HOT</div>
+      </div>
+      <div class="airline-card" onclick="showPage('stores')">
+        <div class="airline-card-logo" style="background:linear-gradient(135deg,#006564,#004544)">CX</div>
+        <div class="airline-card-name">Cathay Pacific</div>
+        <div class="airline-card-count">17 deals</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LATEST DEALS -->
+<section class="section deals-bg">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">🏷️ Latest Deals</div>
+      <h2>Fresh Flight Deals</h2>
+      <p class="section-sub">New coupons and discounts added daily — don't miss out on limited-time offers</p>
+    </div>
+    <div class="deals-filters">
+      <span class="filter-label">Filter:</span>
+      <button class="filter-btn active" onclick="setFilter(this)">All Deals</button>
+      <button class="filter-btn" onclick="setFilter(this)">Promo Codes</button>
+      <button class="filter-btn" onclick="setFilter(this)">Flight Deals</button>
+      <button class="filter-btn" onclick="setFilter(this)">Hotel Packages</button>
+      <button class="filter-btn" onclick="setFilter(this)">Student Deals</button>
+      <button class="filter-btn" onclick="setFilter(this)">Business Class</button>
+    </div>
+    <div class="deals-grid">
+
+      <div class="deal-card" onclick="openCouponModal('EMI20ECON','Emirates','20% Economy Roundtrip',20)">
+        <div class="deal-img"><div class="deal-img-emoji">🏙️</div><div class="deal-img-overlay"></div>
+          <div class="deal-type-badge promo">PROMO CODE</div>
+          <div class="deal-price-badge">-20%</div>
+        </div>
+        <div class="deal-body">
+          <div class="deal-airline-pill">✈️ Emirates</div>
+          <div class="deal-card-title">Economy Roundtrip to Dubai — Save 20%</div>
+          <div class="deal-card-desc">Book by June 30 for travel through December. Includes checked baggage and in-flight meals.</div>
+          <div class="deal-footer">
+            <div class="deal-stats">
+              <span class="deal-stat">👁 3.2K views</span>
+              <span class="deal-stat">💬 42 comments</span>
+            </div>
+            <span class="success-pct">✅ 91%</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="deal-card" onclick="openCouponModal('QR15LONG','Qatar Airways','15% Long-Haul Special',15)">
+        <div class="deal-img" style="background:linear-gradient(135deg,#3a0012,#5C0016)"><div class="deal-img-emoji">🌏</div><div class="deal-img-overlay"></div>
+          <div class="deal-type-badge deal">FLIGHT DEAL</div>
+          <div class="deal-price-badge">-15%</div>
+        </div>
+        <div class="deal-body">
+          <div class="deal-airline-pill">✈️ Qatar Airways</div>
+          <div class="deal-card-title">Long-Haul Business Class — 15% Off</div>
+          <div class="deal-card-desc">Fly in comfort to 150+ destinations. Includes lounge access and priority boarding.</div>
+          <div class="deal-footer">
+            <div class="deal-stats">
+              <span class="deal-stat">👁 2.1K views</span>
+              <span class="deal-stat">💬 28 comments</span>
+            </div>
+            <span class="success-pct">✅ 88%</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="deal-card" onclick="openCouponModal('KL30EUR2','KLM','30% European Short-Haul',30)">
+        <div class="deal-img" style="background:linear-gradient(135deg,#001a3d,#003080)"><div class="deal-img-emoji">🗼</div><div class="deal-img-overlay"></div>
+          <div class="deal-type-badge sale">FLASH SALE</div>
+          <div class="deal-price-badge">-30%</div>
+        </div>
+        <div class="deal-body">
+          <div class="deal-airline-pill">✈️ KLM Royal Dutch</div>
+          <div class="deal-card-title">European Short-Haul — Up to 30% Off</div>
+          <div class="deal-card-desc">Explore Paris, Rome, Barcelona and more at unbeatable prices this summer season.</div>
+          <div class="deal-footer">
+            <div class="deal-stats">
+              <span class="deal-stat">👁 1.8K views</span>
+              <span class="deal-stat">💬 19 comments</span>
+            </div>
+            <span class="success-pct">✅ 85%</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="deal-card" onclick="openCouponModal('SQ10PACK','Singapore Airlines','10% Vacation Package',10)">
+        <div class="deal-img" style="background:linear-gradient(135deg,#002244,#004488)"><div class="deal-img-emoji">🏝️</div><div class="deal-img-overlay"></div>
+          <div class="deal-type-badge promo">PACKAGE</div>
+          <div class="deal-price-badge">-10%</div>
+        </div>
+        <div class="deal-body">
+          <div class="deal-airline-pill">✈️ Singapore Airlines</div>
+          <div class="deal-card-title">Asia Vacation Package — Extra 10% Off</div>
+          <div class="deal-card-desc">All-inclusive packages to Bali, Thailand, Japan. Book flight + hotel for maximum savings.</div>
+          <div class="deal-footer">
+            <div class="deal-stats">
+              <span class="deal-stat">👁 4.5K views</span>
+              <span class="deal-stat">💬 67 comments</span>
+            </div>
+            <span class="success-pct">✅ 94%</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="deal-card" onclick="openCouponModal('EY25STU','Etihad Airways','25% Student Discount',25)">
+        <div class="deal-img" style="background:linear-gradient(135deg,#3d2a00,#7B6122)"><div class="deal-img-emoji">🎓</div><div class="deal-img-overlay"></div>
+          <div class="deal-type-badge deal">STUDENT DEAL</div>
+          <div class="deal-price-badge">-25%</div>
+        </div>
+        <div class="deal-body">
+          <div class="deal-airline-pill">✈️ Etihad Airways</div>
+          <div class="deal-card-title">Student Discount — 25% Off + Extra Baggage</div>
+          <div class="deal-card-desc">Exclusive for students with valid ID. Extra 10kg baggage allowance included on all routes.</div>
+          <div class="deal-footer">
+            <div class="deal-stats">
+              <span class="deal-stat">👁 2.9K views</span>
+              <span class="deal-stat">💬 53 comments</span>
+            </div>
+            <span class="success-pct">✅ 89%</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="deal-card" onclick="openCouponModal('VS40BIZ','Virgin Atlantic','40% Business Class',40)">
+        <div class="deal-img" style="background:linear-gradient(135deg,#5a0009,#A00012)"><div class="deal-img-emoji">🌃</div><div class="deal-img-overlay"></div>
+          <div class="deal-type-badge sale">LIMITED</div>
+          <div class="deal-price-badge">-40%</div>
+        </div>
+        <div class="deal-body">
+          <div class="deal-airline-pill">✈️ Virgin Atlantic</div>
+          <div class="deal-card-title">Business Class to NYC & LA — 40% Off</div>
+          <div class="deal-card-desc">Lie-flat beds, premium dining, Sky Suite experience. Limited seats available at this price.</div>
+          <div class="deal-footer">
+            <div class="deal-stats">
+              <span class="deal-stat">👁 6.1K views</span>
+              <span class="deal-stat">💬 94 comments</span>
+            </div>
+            <span class="success-pct">✅ 96%</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div style="text-align:center;margin-top:2rem">
+      <button class="cta-primary" onclick="showPage('deals')">View All 847 Deals →</button>
+    </div>
+  </div>
+</section>
+
+<!-- CATEGORIES -->
+<section class="section categories-bg">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">📂 Browse By Type</div>
+      <h2>Deal Categories</h2>
+      <p class="section-sub">Find exactly the type of travel deal you're looking for</p>
+    </div>
+    <div class="categories-grid">
+      <div class="cat-card" style="background:linear-gradient(135deg,#005B7F,#0077A8)" onclick="showPage('categories')">
+        <div class="cat-icon">✈️</div>
+        <div class="cat-name">Airline Coupons</div>
+        <div class="cat-count">342 deals</div>
+      </div>
+      <div class="cat-card" style="background:linear-gradient(135deg,#16A34A,#15803D)" onclick="showPage('categories')">
+        <div class="cat-icon">🏷️</div>
+        <div class="cat-name">Flight Deals</div>
+        <div class="cat-count">218 deals</div>
+      </div>
+      <div class="cat-card" style="background:linear-gradient(135deg,#7C3AED,#6D28D9)" onclick="showPage('categories')">
+        <div class="cat-icon">🏨</div>
+        <div class="cat-name">Hotel Deals</div>
+        <div class="cat-count">95 deals</div>
+      </div>
+      <div class="cat-card" style="background:linear-gradient(135deg,#F59E0B,#D97706)" onclick="showPage('categories')">
+        <div class="cat-icon">🌴</div>
+        <div class="cat-name">Vacation Packages</div>
+        <div class="cat-count">67 deals</div>
+      </div>
+      <div class="cat-card" style="background:linear-gradient(135deg,#EC4899,#DB2777)" onclick="showPage('categories')">
+        <div class="cat-icon">🎓</div>
+        <div class="cat-name">Student Discounts</div>
+        <div class="cat-count">44 deals</div>
+      </div>
+      <div class="cat-card" style="background:linear-gradient(135deg,#059669,#047857)" onclick="showPage('categories')">
+        <div class="cat-icon">🗺️</div>
+        <div class="cat-name">Attractions</div>
+        <div class="cat-count">38 deals</div>
+      </div>
+      <div class="cat-card" style="background:linear-gradient(135deg,#DC2626,#B91C1C)" onclick="showPage('categories')">
+        <div class="cat-icon">📰</div>
+        <div class="cat-name">Travel News</div>
+        <div class="cat-count">124 articles</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ATTRACTIONS -->
+<section class="section attractions-bg">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">🗺️ Explore The World</div>
+      <h2>Top Travel Attractions</h2>
+      <p class="section-sub">Discover deals on activities and attractions in the world's most popular destinations</p>
+    </div>
+    <div class="attractions-grid">
+      <div class="attr-card" onclick="showPage('attractions')">
+        <div class="attr-bg">🗽</div>
+        <div class="attr-overlay"></div>
+        <div class="attr-content">
+          <div class="attr-region">North America</div>
+          <div class="attr-name">United States</div>
+          <div class="attr-deals">🏷️ 84 deals</div>
+        </div>
+      </div>
+      <div class="attr-card" onclick="showPage('attractions')">
+        <div class="attr-bg" style="background:linear-gradient(135deg,#1a0033,#2d0055)">🏯</div>
+        <div class="attr-overlay"></div>
+        <div class="attr-content">
+          <div class="attr-region">East Asia</div>
+          <div class="attr-name">Japan & China</div>
+          <div class="attr-deals">🏷️ 61 deals</div>
+        </div>
+      </div>
+      <div class="attr-card" onclick="showPage('attractions')">
+        <div class="attr-bg" style="background:linear-gradient(135deg,#1a1500,#332900)">🕌</div>
+        <div class="attr-overlay"></div>
+        <div class="attr-content">
+          <div class="attr-region">Middle East</div>
+          <div class="attr-name">UAE & Dubai</div>
+          <div class="attr-deals">🏷️ 73 deals</div>
+        </div>
+      </div>
+      <div class="attr-card" onclick="showPage('attractions')">
+        <div class="attr-bg" style="background:linear-gradient(135deg,#000033,#000066)">🗼</div>
+        <div class="attr-overlay"></div>
+        <div class="attr-content">
+          <div class="attr-region">Western Europe</div>
+          <div class="attr-name">France & Italy</div>
+          <div class="attr-deals">🏷️ 92 deals</div>
+        </div>
+      </div>
+      <div class="attr-card" onclick="showPage('attractions')">
+        <div class="attr-bg" style="background:linear-gradient(135deg,#001a00,#003300)">🌿</div>
+        <div class="attr-overlay"></div>
+        <div class="attr-content">
+          <div class="attr-region">Southeast Asia</div>
+          <div class="attr-name">Thailand & Bali</div>
+          <div class="attr-deals">🏷️ 57 deals</div>
+        </div>
+      </div>
+      <div class="attr-card" onclick="showPage('attractions')">
+        <div class="attr-bg" style="background:linear-gradient(135deg,#1a0a00,#331500)">🌵</div>
+        <div class="attr-overlay"></div>
+        <div class="attr-content">
+          <div class="attr-region">Southwest USA</div>
+          <div class="attr-name">Arizona & Nevada</div>
+          <div class="attr-deals">🏷️ 39 deals</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="newsletter-bg">
+  <div class="newsletter-inner">
+    <div class="section-tag" style="background:rgba(40,189,235,.2);color:var(--sky)">📧 Stay Updated</div>
+    <h2>Get the Best Airline Deals<br>Straight to Your Inbox</h2>
+    <p>Join 85,000+ smart travelers. Get exclusive promo codes, flash sales, and flight deals before anyone else.</p>
+    <div class="newsletter-form">
+      <input class="newsletter-input" type="email" placeholder="Enter your email address...">
+      <button class="newsletter-submit">Subscribe Free</button>
+    </div>
+    <div class="newsletter-trust">
+      <span class="trust-item"><span class="trust-dot"></span> No spam ever</span>
+      <span class="trust-item"><span class="trust-dot"></span> Unsubscribe anytime</span>
+      <span class="trust-item"><span class="trust-dot"></span> 85K+ subscribers</span>
+    </div>
+  </div>
+</section>
+
+<!-- BLOG -->
+<section class="section blog-bg">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">📰 Travel Insights</div>
+      <h2>Latest Travel News & Guides</h2>
+      <p class="section-sub">Expert tips, destination guides, and airline news to help you travel smarter</p>
+    </div>
+    <div class="blog-grid">
+      <div class="blog-card" onclick="showPage('blog')">
+        <div class="blog-img" style="background:linear-gradient(135deg,#0a1628,#1a2d52)">
+          ✈️
+          <div class="blog-cat-tag">FLIGHT TIPS</div>
+        </div>
+        <div class="blog-body">
+          <div class="blog-meta">
+            <span class="blog-date">📅 May 20, 2026</span>
+            <span class="blog-read">⏱ 5 min read</span>
+          </div>
+          <div class="blog-title">10 Proven Tricks to Find the Cheapest Flights in 2026</div>
+          <div class="blog-excerpt">From incognito browsing to booking on Tuesdays — these strategies could save you hundreds on your next trip...</div>
+        </div>
+      </div>
+      <div class="blog-card" onclick="showPage('blog')">
+        <div class="blog-img" style="background:linear-gradient(135deg,#1a0010,#3a0025)">
+          🌏
+          <div class="blog-cat-tag">DESTINATION</div>
+        </div>
+        <div class="blog-body">
+          <div class="blog-meta">
+            <span class="blog-date">📅 May 18, 2026</span>
+            <span class="blog-read">⏱ 8 min read</span>
+          </div>
+          <div class="blog-title">Best Time to Book Emirates Business Class at Discount Prices</div>
+          <div class="blog-excerpt">Emirates frequently releases business class promotions during key sale windows. Here's exactly when to look...</div>
+        </div>
+      </div>
+      <div class="blog-card" onclick="showPage('blog')">
+        <div class="blog-img" style="background:linear-gradient(135deg,#001a0a,#003015)">
+          🏨
+          <div class="blog-cat-tag">HOTEL DEALS</div>
+        </div>
+        <div class="blog-body">
+          <div class="blog-meta">
+            <span class="blog-date">📅 May 15, 2026</span>
+            <span class="blog-read">⏱ 6 min read</span>
+          </div>
+          <div class="blog-title">Bundle Flights + Hotels for Maximum Savings This Summer</div>
+          <div class="blog-excerpt">Booking vacation packages through airline portals can unlock exclusive bundle discounts unavailable elsewhere...</div>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:2rem">
+      <button class="cta-outline" style="color:var(--navy);border-color:var(--border)" onclick="showPage('blog')">Read All Articles →</button>
+    </div>
+  </div>
+</section>
+
+</div><!-- end page-home -->
+
+<!-- ══════ DEALS PAGE ══════ -->
+<div class="page" id="page-deals">
+  <div style="background:linear-gradient(135deg,var(--navy),var(--blue));padding:2.5rem 2rem;text-align:center">
+    <div class="section-tag" style="background:rgba(255,255,255,.15);color:#fff;margin-bottom:.875rem">847 Active Deals</div>
+    <h1 style="font-family:'Sora',sans-serif;font-size:2rem;color:#fff;font-weight:800;margin-bottom:.5rem">All Flight Deals & Coupons</h1>
+    <p style="color:rgba(255,255,255,.7);font-size:.9375rem">Filter and find the perfect deal for your next trip</p>
+  </div>
+  <div class="deals-page-layout">
+    <aside class="sidebar">
+      <h3>🎛️ Filter Deals</h3>
+      <div class="sidebar-section">
+        <div class="sidebar-label">Airline</div>
+        <label class="checkbox-item"><input type="checkbox" checked><span>Emirates (42)</span></label>
+        <label class="checkbox-item"><input type="checkbox" checked><span>Qatar Airways (38)</span></label>
+        <label class="checkbox-item"><input type="checkbox"><span>Singapore Airlines (31)</span></label>
+        <label class="checkbox-item"><input type="checkbox"><span>KLM (28)</span></label>
+        <label class="checkbox-item"><input type="checkbox"><span>Etihad Airways (25)</span></label>
+        <label class="checkbox-item"><input type="checkbox"><span>Virgin Atlantic (19)</span></label>
+      </div>
+      <div class="sidebar-section">
+        <div class="sidebar-label">Category</div>
+        <label class="checkbox-item"><input type="checkbox" checked><span>Promo Codes</span></label>
+        <label class="checkbox-item"><input type="checkbox" checked><span>Flight Deals</span></label>
+        <label class="checkbox-item"><input type="checkbox"><span>Hotel Packages</span></label>
+        <label class="checkbox-item"><input type="checkbox"><span>Student Discounts</span></label>
+      </div>
+      <div class="sidebar-section">
+        <div class="sidebar-label">Min. Success Rate</div>
+        <input type="range" class="sidebar-range" min="0" max="100" value="70" oninput="this.nextElementSibling.textContent=this.value+'%'">
+        <span style="font-size:.8125rem;color:var(--muted)">70%</span>
+      </div>
+      <button class="redeem-btn" style="margin-top:.5rem">Apply Filters</button>
+    </aside>
+    <div>
+      <div class="deals-filters" style="margin-bottom:1.5rem">
+        <span class="filter-label">Sort:</span>
+        <button class="filter-btn active" onclick="setFilter(this)">Latest</button>
+        <button class="filter-btn" onclick="setFilter(this)">Most Popular</button>
+        <button class="filter-btn" onclick="setFilter(this)">Highest Discount</button>
+        <button class="filter-btn" onclick="setFilter(this)">Expiring Soon</button>
+      </div>
+      <div class="deals-grid">
+        <div class="deal-card" onclick="openCouponModal('EMI20ECON','Emirates','20% Economy Roundtrip',20)">
+          <div class="deal-img"><div class="deal-img-emoji">🏙️</div><div class="deal-img-overlay"></div><div class="deal-type-badge promo">PROMO CODE</div><div class="deal-price-badge">-20%</div></div>
+          <div class="deal-body"><div class="deal-airline-pill">✈️ Emirates</div><div class="deal-card-title">Economy Roundtrip to Dubai — Save 20%</div><div class="deal-card-desc">Book by June 30 for travel through December. Includes checked baggage.</div><div class="deal-footer"><div class="deal-stats"><span class="deal-stat">👁 3.2K</span></div><span class="success-pct">✅ 91%</span></div></div>
+        </div>
+        <div class="deal-card" onclick="openCouponModal('VA40BIZ2','Virgin Atlantic','40% Business Class',40)">
+          <div class="deal-img" style="background:linear-gradient(135deg,#5a0009,#A00012)"><div class="deal-img-emoji">🌃</div><div class="deal-img-overlay"></div><div class="deal-type-badge sale">LIMITED</div><div class="deal-price-badge">-40%</div></div>
+          <div class="deal-body"><div class="deal-airline-pill">✈️ Virgin Atlantic</div><div class="deal-card-title">Business Class NYC & LA — 40% Off</div><div class="deal-card-desc">Lie-flat beds, premium dining, Sky Suite experience.</div><div class="deal-footer"><div class="deal-stats"><span class="deal-stat">👁 6.1K</span></div><span class="success-pct">✅ 96%</span></div></div>
+        </div>
+        <div class="deal-card" onclick="openCouponModal('SQ10ASI2','Singapore Airlines','10% Asia Package',10)">
+          <div class="deal-img" style="background:linear-gradient(135deg,#002244,#004488)"><div class="deal-img-emoji">🏝️</div><div class="deal-img-overlay"></div><div class="deal-type-badge promo">PACKAGE</div><div class="deal-price-badge">-10%</div></div>
+          <div class="deal-body"><div class="deal-airline-pill">✈️ Singapore Airlines</div><div class="deal-card-title">Asia Vacation Package — Extra 10% Off</div><div class="deal-card-desc">All-inclusive packages to Bali, Thailand, Japan.</div><div class="deal-footer"><div class="deal-stats"><span class="deal-stat">👁 4.5K</span></div><span class="success-pct">✅ 94%</span></div></div>
+        </div>
+        <div class="deal-card" onclick="openCouponModal('KL30EUR3','KLM','30% European Short-Haul',30)">
+          <div class="deal-img" style="background:linear-gradient(135deg,#001a3d,#003080)"><div class="deal-img-emoji">🗼</div><div class="deal-img-overlay"></div><div class="deal-type-badge sale">FLASH SALE</div><div class="deal-price-badge">-30%</div></div>
+          <div class="deal-body"><div class="deal-airline-pill">✈️ KLM Royal Dutch</div><div class="deal-card-title">European Short-Haul — Up to 30% Off</div><div class="deal-card-desc">Paris, Rome, Barcelona at unbeatable summer prices.</div><div class="deal-footer"><div class="deal-stats"><span class="deal-stat">👁 1.8K</span></div><span class="success-pct">✅ 85%</span></div></div>
+        </div>
+        <div class="deal-card" onclick="openCouponModal('EY25STU2','Etihad Airways','25% Student Discount',25)">
+          <div class="deal-img" style="background:linear-gradient(135deg,#3d2a00,#7B6122)"><div class="deal-img-emoji">🎓</div><div class="deal-img-overlay"></div><div class="deal-type-badge deal">STUDENT</div><div class="deal-price-badge">-25%</div></div>
+          <div class="deal-body"><div class="deal-airline-pill">✈️ Etihad Airways</div><div class="deal-card-title">Student Discount — 25% + Extra Baggage</div><div class="deal-card-desc">Exclusive for students. Extra 10kg baggage on all routes.</div><div class="deal-footer"><div class="deal-stats"><span class="deal-stat">👁 2.9K</span></div><span class="success-pct">✅ 89%</span></div></div>
+        </div>
+        <div class="deal-card" onclick="openCouponModal('QR15BIZ2','Qatar Airways','15% Business Class',15)">
+          <div class="deal-img" style="background:linear-gradient(135deg,#3a0012,#5C0016)"><div class="deal-img-emoji">🌏</div><div class="deal-img-overlay"></div><div class="deal-type-badge deal">BUSINESS</div><div class="deal-price-badge">-15%</div></div>
+          <div class="deal-body"><div class="deal-airline-pill">✈️ Qatar Airways</div><div class="deal-card-title">Business Class Long-Haul — 15% Off</div><div class="deal-card-desc">Lounge access, priority boarding, 150+ destinations.</div><div class="deal-footer"><div class="deal-stats"><span class="deal-stat">👁 2.1K</span></div><span class="success-pct">✅ 88%</span></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════ AIRLINES STORES PAGE ══════ -->
+<div class="page" id="page-stores">
+  <div style="background:linear-gradient(135deg,var(--navy),var(--blue));padding:2.5rem 2rem;text-align:center">
+    <h1 style="font-family:'Sora',sans-serif;font-size:2rem;color:#fff;font-weight:800;margin-bottom:.5rem">✈️ Airline Stores</h1>
+    <p style="color:rgba(255,255,255,.7)">Browse exclusive deals from 48 world-class airlines</p>
+  </div>
+  <div class="container" style="padding:2rem">
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.25rem">
+      <div class="deal-card" style="cursor:pointer" onclick="openCouponModal('EMI15MUL','Emirates','15% Multi-Dest',15)">
+        <div style="background:linear-gradient(135deg,#C8102E,#8B0000);height:100px;display:flex;align-items:center;justify-content:center;font-size:2.5rem;font-family:'Sora',sans-serif;font-weight:800;color:rgba(255,255,255,.3);letter-spacing:.05em">EMIRATES</div>
+        <div class="deal-body">
+          <div style="font-family:'Sora',sans-serif;font-weight:800;font-size:1.125rem;color:var(--navy);margin-bottom:.375rem">Emirates</div>
+          <div style="font-size:.8rem;color:var(--muted);margin-bottom:.875rem">Dubai-based airline flying to 150+ destinations worldwide</div>
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <span style="font-size:.875rem;font-weight:700;color:var(--blue)">42 Active Deals</span>
+            <button class="redeem-btn" style="width:auto;padding:.5rem 1rem;font-size:.75rem">View Deals</button>
+          </div>
+        </div>
+      </div>
+      <div class="deal-card" style="cursor:pointer" onclick="openCouponModal('QR20MUL','Qatar Airways','20% Multi Deals',20)">
+        <div style="background:linear-gradient(135deg,#5C0016,#8B1A2B);height:100px;display:flex;align-items:center;justify-content:center;font-size:2rem;font-family:'Sora',sans-serif;font-weight:800;color:rgba(255,255,255,.3)">QATAR</div>
+        <div class="deal-body">
+          <div style="font-family:'Sora',sans-serif;font-weight:800;font-size:1.125rem;color:var(--navy);margin-bottom:.375rem">Qatar Airways</div>
+          <div style="font-size:.8rem;color:var(--muted);margin-bottom:.875rem">World's 5-star airline from Doha with premium services</div>
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <span style="font-size:.875rem;font-weight:700;color:var(--blue)">38 Active Deals</span>
+            <button class="redeem-btn" style="width:auto;padding:.5rem 1rem;font-size:.75rem">View Deals</button>
+          </div>
+        </div>
+      </div>
+      <div class="deal-card" style="cursor:pointer" onclick="openCouponModal('SQ15MUL','Singapore Airlines','15% Global Deals',15)">
+        <div style="background:linear-gradient(135deg,#003366,#005599);height:100px;display:flex;align-items:center;justify-content:center;font-size:1.75rem;font-family:'Sora',sans-serif;font-weight:800;color:rgba(255,255,255,.3)">SINGAPORE</div>
+        <div class="deal-body">
+          <div style="font-family:'Sora',sans-serif;font-weight:800;font-size:1.125rem;color:var(--navy);margin-bottom:.375rem">Singapore Airlines</div>
+          <div style="font-size:.8rem;color:var(--muted);margin-bottom:.875rem">Award-winning Asian carrier with global network</div>
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <span style="font-size:.875rem;font-weight:700;color:var(--blue)">31 Active Deals</span>
+            <button class="redeem-btn" style="width:auto;padding:.5rem 1rem;font-size:.75rem">View Deals</button>
+          </div>
+        </div>
+      </div>
+      <div class="deal-card" style="cursor:pointer" onclick="openCouponModal('EY10MUL','Etihad Airways','10% Multi Deals',10)">
+        <div style="background:linear-gradient(135deg,#7B6122,#B08B30);height:100px;display:flex;align-items:center;justify-content:center;font-size:2rem;font-family:'Sora',sans-serif;font-weight:800;color:rgba(255,255,255,.3)">ETIHAD</div>
+        <div class="deal-body">
+          <div style="font-family:'Sora',sans-serif;font-weight:800;font-size:1.125rem;color:var(--navy);margin-bottom:.375rem">Etihad Airways</div>
+          <div style="font-size:.8rem;color:var(--muted);margin-bottom:.875rem">Abu Dhabi's national carrier with luxury experiences</div>
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <span style="font-size:.875rem;font-weight:700;color:var(--blue)">25 Active Deals</span>
+            <button class="redeem-btn" style="width:auto;padding:.5rem 1rem;font-size:.75rem">View Deals</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════ CATEGORIES PAGE ══════ -->
+<div class="page" id="page-categories">
+  <div style="background:linear-gradient(135deg,var(--navy),var(--blue));padding:2.5rem 2rem;text-align:center">
+    <h1 style="font-family:'Sora',sans-serif;font-size:2rem;color:#fff;font-weight:800;margin-bottom:.5rem">📂 Browse Categories</h1>
+    <p style="color:rgba(255,255,255,.7)">Find deals organized by type</p>
+  </div>
+  <div class="container" style="padding:2rem">
+    <div class="categories-grid">
+      <div class="cat-card" style="background:linear-gradient(135deg,#005B7F,#0077A8)" onclick="showPage('deals')"><div class="cat-icon">✈️</div><div class="cat-name">Airline Coupons</div><div class="cat-count">342 deals</div></div>
+      <div class="cat-card" style="background:linear-gradient(135deg,#16A34A,#15803D)" onclick="showPage('deals')"><div class="cat-icon">🏷️</div><div class="cat-name">Flight Deals</div><div class="cat-count">218 deals</div></div>
+      <div class="cat-card" style="background:linear-gradient(135deg,#7C3AED,#6D28D9)" onclick="showPage('deals')"><div class="cat-icon">🏨</div><div class="cat-name">Hotel Deals</div><div class="cat-count">95 deals</div></div>
+      <div class="cat-card" style="background:linear-gradient(135deg,#F59E0B,#D97706)" onclick="showPage('deals')"><div class="cat-icon">🌴</div><div class="cat-name">Vacation Packages</div><div class="cat-count">67 deals</div></div>
+      <div class="cat-card" style="background:linear-gradient(135deg,#EC4899,#DB2777)" onclick="showPage('deals')"><div class="cat-icon">🎓</div><div class="cat-name">Student Discounts</div><div class="cat-count">44 deals</div></div>
+      <div class="cat-card" style="background:linear-gradient(135deg,#059669,#047857)" onclick="showPage('deals')"><div class="cat-icon">🗺️</div><div class="cat-name">Attractions</div><div class="cat-count">38 deals</div></div>
+      <div class="cat-card" style="background:linear-gradient(135deg,#DC2626,#B91C1C)" onclick="showPage('blog')"><div class="cat-icon">📰</div><div class="cat-name">Travel News</div><div class="cat-count">124 articles</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════ ATTRACTIONS PAGE ══════ -->
+<div class="page" id="page-attractions">
+  <div style="background:linear-gradient(135deg,var(--navy),var(--blue));padding:2.5rem 2rem;text-align:center">
+    <h1 style="font-family:'Sora',sans-serif;font-size:2rem;color:#fff;font-weight:800;margin-bottom:.5rem">🗺️ Travel Attractions</h1>
+    <p style="color:rgba(255,255,255,.7)">Discover deals on the world's best destinations</p>
+  </div>
+  <div class="container" style="padding:2rem">
+    <div class="attractions-grid" style="grid-template-columns:repeat(auto-fill,minmax(260px,1fr))">
+      <div class="attr-card" style="height:280px"><div class="attr-bg">🗽</div><div class="attr-overlay"></div><div class="attr-content"><div class="attr-region">North America</div><div class="attr-name">United States</div><div class="attr-deals">🏷️ 84 deals</div></div></div>
+      <div class="attr-card" style="height:280px;background:#1a0033"><div class="attr-bg">🏯</div><div class="attr-overlay"></div><div class="attr-content"><div class="attr-region">East Asia</div><div class="attr-name">Japan & China</div><div class="attr-deals">🏷️ 61 deals</div></div></div>
+      <div class="attr-card" style="height:280px;background:#1a1500"><div class="attr-bg">🕌</div><div class="attr-overlay"></div><div class="attr-content"><div class="attr-region">Middle East</div><div class="attr-name">UAE & Dubai</div><div class="attr-deals">🏷️ 73 deals</div></div></div>
+      <div class="attr-card" style="height:280px;background:#000033"><div class="attr-bg">🗼</div><div class="attr-overlay"></div><div class="attr-content"><div class="attr-region">Western Europe</div><div class="attr-name">France & Italy</div><div class="attr-deals">🏷️ 92 deals</div></div></div>
+      <div class="attr-card" style="height:280px;background:#001a00"><div class="attr-bg">🌿</div><div class="attr-overlay"></div><div class="attr-content"><div class="attr-region">Southeast Asia</div><div class="attr-name">Thailand & Bali</div><div class="attr-deals">🏷️ 57 deals</div></div></div>
+      <div class="attr-card" style="height:280px;background:#1a0a00"><div class="attr-bg">🌵</div><div class="attr-overlay"></div><div class="attr-content"><div class="attr-region">Southwest USA</div><div class="attr-name">Arizona & Nevada</div><div class="attr-deals">🏷️ 39 deals</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════ BLOG PAGE ══════ -->
+<div class="page" id="page-blog">
+  <div style="background:linear-gradient(135deg,var(--navy),var(--blue));padding:2.5rem 2rem;text-align:center">
+    <h1 style="font-family:'Sora',sans-serif;font-size:2rem;color:#fff;font-weight:800;margin-bottom:.5rem">📰 Travel News & Guides</h1>
+    <p style="color:rgba(255,255,255,.7)">Expert tips, destination guides, and airline updates</p>
+  </div>
+  <div class="container" style="padding:2rem">
+    <div class="blog-grid" style="grid-template-columns:repeat(auto-fill,minmax(300px,1fr))">
+      <div class="blog-card"><div class="blog-img" style="background:linear-gradient(135deg,#0a1628,#1a2d52)">✈️<div class="blog-cat-tag">FLIGHT TIPS</div></div><div class="blog-body"><div class="blog-meta"><span class="blog-date">📅 May 20, 2026</span><span class="blog-read">⏱ 5 min</span></div><div class="blog-title">10 Proven Tricks to Find the Cheapest Flights in 2026</div><div class="blog-excerpt">From incognito browsing to booking on Tuesdays — these strategies could save you hundreds...</div></div></div>
+      <div class="blog-card"><div class="blog-img" style="background:linear-gradient(135deg,#1a0010,#3a0025)">🌏<div class="blog-cat-tag">DESTINATION</div></div><div class="blog-body"><div class="blog-meta"><span class="blog-date">📅 May 18, 2026</span><span class="blog-read">⏱ 8 min</span></div><div class="blog-title">Best Time to Book Emirates Business Class at Discount Prices</div><div class="blog-excerpt">Emirates frequently releases business class promotions during key sale windows...</div></div></div>
+      <div class="blog-card"><div class="blog-img" style="background:linear-gradient(135deg,#001a0a,#003015)">🏨<div class="blog-cat-tag">HOTEL DEALS</div></div><div class="blog-body"><div class="blog-meta"><span class="blog-date">📅 May 15, 2026</span><span class="blog-read">⏱ 6 min</span></div><div class="blog-title">Bundle Flights + Hotels for Maximum Savings This Summer</div><div class="blog-excerpt">Booking vacation packages through airline portals can unlock exclusive bundle discounts...</div></div></div>
+      <div class="blog-card"><div class="blog-img" style="background:linear-gradient(135deg,#1a1000,#3a2000)">🎒<div class="blog-cat-tag">BUDGET TRAVEL</div></div><div class="blog-body"><div class="blog-meta"><span class="blog-date">📅 May 12, 2026</span><span class="blog-read">⏱ 7 min</span></div><div class="blog-title">Student Travel Guide: How to Fly Internationally on a Budget</div><div class="blog-excerpt">Student discounts, budget airlines, and hostel combos — the complete guide for student travelers...</div></div></div>
+      <div class="blog-card"><div class="blog-img" style="background:linear-gradient(135deg,#001a1a,#003333)">🔑<div class="blog-cat-tag">LOYALTY POINTS</div></div><div class="blog-body"><div class="blog-meta"><span class="blog-date">📅 May 10, 2026</span><span class="blog-read">⏱ 9 min</span></div><div class="blog-title">Maximize Airline Miles: The Ultimate 2026 Loyalty Program Guide</div><div class="blog-excerpt">Which airline loyalty programs give you the most value per dollar spent? We rank them all...</div></div></div>
+      <div class="blog-card"><div class="blog-img" style="background:linear-gradient(135deg,#1a001a,#350035)">🌴<div class="blog-cat-tag">ASIA PACIFIC</div></div><div class="blog-body"><div class="blog-meta"><span class="blog-date">📅 May 8, 2026</span><span class="blog-read">⏱ 10 min</span></div><div class="blog-title">Top 10 Southeast Asia Destinations Under $500 Roundtrip</div><div class="blog-excerpt">Bali, Bangkok, Ho Chi Minh City, and more — here's how to reach them cheaply from major hubs...</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════ SHARE COUPON PAGE ══════ -->
+<div class="page" id="page-share">
+  <div style="background:linear-gradient(135deg,var(--navy),var(--blue));padding:2.5rem 2rem;text-align:center">
+    <h1 style="font-family:'Sora',sans-serif;font-size:2rem;color:#fff;font-weight:800;margin-bottom:.5rem">📤 Submit a Deal</h1>
+    <p style="color:rgba(255,255,255,.7)">Share an airline deal with the community</p>
+  </div>
+  <div style="max-width:600px;margin:2rem auto;padding:0 1.5rem">
+    <div style="background:#fff;border-radius:20px;border:1.5px solid var(--border);padding:2rem">
+      <div style="display:flex;flex-direction:column;gap:1.25rem">
+        <div>
+          <label style="display:block;font-size:.8125rem;font-weight:600;color:var(--navy);margin-bottom:.5rem">Deal Title *</label>
+          <input type="text" placeholder="e.g. Emirates — 30% Off Economy Class" style="width:100%;padding:.75rem 1rem;border:1.5px solid var(--border);border-radius:10px;font-size:.9rem;font-family:'DM Sans',sans-serif;outline:none;color:var(--dark)">
+        </div>
+        <div>
+          <label style="display:block;font-size:.8125rem;font-weight:600;color:var(--navy);margin-bottom:.5rem">Airline *</label>
+          <select style="width:100%;padding:.75rem 1rem;border:1.5px solid var(--border);border-radius:10px;font-size:.9rem;font-family:'DM Sans',sans-serif;outline:none;color:var(--dark);background:#fff">
+            <option>Select Airline...</option>
+            <option>Emirates</option><option>Qatar Airways</option><option>Singapore Airlines</option>
+            <option>KLM</option><option>Etihad Airways</option><option>Virgin Atlantic</option><option>Other</option>
+          </select>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+          <div>
+            <label style="display:block;font-size:.8125rem;font-weight:600;color:var(--navy);margin-bottom:.5rem">Coupon Code</label>
+            <input type="text" placeholder="e.g. SAVE30" style="width:100%;padding:.75rem 1rem;border:1.5px solid var(--border);border-radius:10px;font-size:.9rem;font-family:'Sora',sans-serif;letter-spacing:.1em;outline:none;color:var(--dark)">
+          </div>
+          <div>
+            <label style="display:block;font-size:.8125rem;font-weight:600;color:var(--navy);margin-bottom:.5rem">Discount %</label>
+            <input type="number" placeholder="e.g. 25" style="width:100%;padding:.75rem 1rem;border:1.5px solid var(--border);border-radius:10px;font-size:.9rem;font-family:'DM Sans',sans-serif;outline:none;color:var(--dark)">
+          </div>
+        </div>
+        <div>
+          <label style="display:block;font-size:.8125rem;font-weight:600;color:var(--navy);margin-bottom:.5rem">Category</label>
+          <select style="width:100%;padding:.75rem 1rem;border:1.5px solid var(--border);border-radius:10px;font-size:.9rem;font-family:'DM Sans',sans-serif;outline:none;color:var(--dark);background:#fff">
+            <option>Select Category...</option>
+            <option>Promo Code</option><option>Flight Deal</option><option>Hotel Package</option>
+            <option>Student Discount</option><option>Vacation Package</option>
+          </select>
+        </div>
+        <div>
+          <label style="display:block;font-size:.8125rem;font-weight:600;color:var(--navy);margin-bottom:.5rem">Expiry Date</label>
+          <input type="date" style="width:100%;padding:.75rem 1rem;border:1.5px solid var(--border);border-radius:10px;font-size:.9rem;font-family:'DM Sans',sans-serif;outline:none;color:var(--dark)">
+        </div>
+        <div>
+          <label style="display:block;font-size:.8125rem;font-weight:600;color:var(--navy);margin-bottom:.5rem">Redeem URL *</label>
+          <input type="url" placeholder="https://..." style="width:100%;padding:.75rem 1rem;border:1.5px solid var(--border);border-radius:10px;font-size:.9rem;font-family:'DM Sans',sans-serif;outline:none;color:var(--dark)">
+        </div>
+        <div>
+          <label style="display:block;font-size:.8125rem;font-weight:600;color:var(--navy);margin-bottom:.5rem">Description</label>
+          <textarea placeholder="Describe the deal in detail..." rows="3" style="width:100%;padding:.75rem 1rem;border:1.5px solid var(--border);border-radius:10px;font-size:.9rem;font-family:'DM Sans',sans-serif;outline:none;resize:vertical;color:var(--dark)"></textarea>
+        </div>
+        <button class="redeem-btn orange" style="padding:1rem;font-size:1rem">Submit Deal for Review</button>
+        <p style="font-size:.75rem;color:var(--muted);text-align:center">Deals are reviewed within 24 hours before going live</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════ LOGIN PAGE ══════ -->
+<div class="page" id="page-login">
+  <div style="min-height:70vh;display:flex;align-items:center;justify-content:center;padding:2rem;background:var(--bg)">
+    <div style="background:#fff;border-radius:20px;border:1.5px solid var(--border);padding:2.5rem;width:100%;max-width:420px">
+      <div style="text-align:center;margin-bottom:2rem">
+        <div style="font-size:2.5rem;margin-bottom:.75rem">✈️</div>
+        <h2 style="font-family:'Sora',sans-serif;font-size:1.5rem;font-weight:800;color:var(--navy);margin-bottom:.375rem">Welcome Back</h2>
+        <p style="font-size:.875rem;color:var(--muted)">Sign in to access exclusive deals</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:1rem">
+        <div><label style="display:block;font-size:.8125rem;font-weight:600;color:var(--navy);margin-bottom:.375rem">Email Address</label><input type="email" placeholder="you@example.com" style="width:100%;padding:.75rem 1rem;border:1.5px solid var(--border);border-radius:10px;font-size:.9rem;font-family:'DM Sans',sans-serif;outline:none"></div>
+        <div><label style="display:block;font-size:.8125rem;font-weight:600;color:var(--navy);margin-bottom:.375rem">Password</label><input type="password" placeholder="••••••••" style="width:100%;padding:.75rem 1rem;border:1.5px solid var(--border);border-radius:10px;font-size:.9rem;font-family:'DM Sans',sans-serif;outline:none"></div>
+        <button class="redeem-btn" style="padding:1rem;font-size:1rem">Sign In</button>
+        <p style="text-align:center;font-size:.8125rem;color:var(--muted)">Don't have an account? <a onclick="showPage('register')" style="color:var(--blue);font-weight:600;cursor:pointer">Register free</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════ REGISTER PAGE ══════ -->
+<div class="page" id="page-register">
+  <div style="min-height:70vh;display:flex;align-items:center;justify-content:center;padding:2rem;background:var(--bg)">
+    <div style="background:#fff;border-radius:20px;border:1.5px solid var(--border);padding:2.5rem;width:100%;max-width:420px">
+      <div style="text-align:center;margin-bottom:2rem">
+        <div style="font-size:2.5rem;margin-bottom:.75rem">🌍</div>
+        <h2 style="font-family:'Sora',sans-serif;font-size:1.5rem;font-weight:800;color:var(--navy);margin-bottom:.375rem">Join AirlineTopDeals</h2>
+        <p style="font-size:.875rem;color:var(--muted)">Get exclusive deals, alerts & save more</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:1rem">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem">
+          <div><label style="display:block;font-size:.8125rem;font-weight:600;color:var(--navy);margin-bottom:.375rem">First Name</label><input type="text" placeholder="John" style="width:100%;padding:.75rem 1rem;border:1.5px solid var(--border);border-radius:10px;font-size:.9rem;font-family:'DM Sans',sans-serif;outline:none"></div>
+          <div><label style="display:block;font-size:.8125rem;font-weight:600;color:var(--navy);margin-bottom:.375rem">Last Name</label><input type="text" placeholder="Doe" style="width:100%;padding:.75rem 1rem;border:1.5px solid var(--border);border-radius:10px;font-size:.9rem;font-family:'DM Sans',sans-serif;outline:none"></div>
+        </div>
+        <div><label style="display:block;font-size:.8125rem;font-weight:600;color:var(--navy);margin-bottom:.375rem">Email Address</label><input type="email" placeholder="you@example.com" style="width:100%;padding:.75rem 1rem;border:1.5px solid var(--border);border-radius:10px;font-size:.9rem;font-family:'DM Sans',sans-serif;outline:none"></div>
+        <div><label style="display:block;font-size:.8125rem;font-weight:600;color:var(--navy);margin-bottom:.375rem">Password</label><input type="password" placeholder="Create a strong password" style="width:100%;padding:.75rem 1rem;border:1.5px solid var(--border);border-radius:10px;font-size:.9rem;font-family:'DM Sans',sans-serif;outline:none"></div>
+        <button class="redeem-btn orange" style="padding:1rem;font-size:1rem">Create Free Account</button>
+        <p style="text-align:center;font-size:.8125rem;color:var(--muted)">Already have an account? <a onclick="showPage('login')" style="color:var(--blue);font-weight:600;cursor:pointer">Sign in</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════ CONTACT PAGE ══════ -->
+<div class="page" id="page-contact">
+  <div style="background:linear-gradient(135deg,var(--navy),var(--blue));padding:2.5rem 2rem;text-align:center">
+    <h1 style="font-family:'Sora',sans-serif;font-size:2rem;color:#fff;font-weight:800;margin-bottom:.5rem">✉️ Contact Us</h1>
+    <p style="color:rgba(255,255,255,.7)">We'd love to hear from you</p>
+  </div>
+  <div style="max-width:600px;margin:2rem auto;padding:0 1.5rem">
+    <div style="background:#fff;border-radius:20px;border:1.5px solid var(--border);padding:2rem">
+      <div style="display:flex;flex-direction:column;gap:1.25rem">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+          <div><label style="display:block;font-size:.8125rem;font-weight:600;color:var(--navy);margin-bottom:.375rem">Name</label><input type="text" placeholder="Your name" style="width:100%;padding:.75rem 1rem;border:1.5px solid var(--border);border-radius:10px;font-size:.9rem;font-family:'DM Sans',sans-serif;outline:none"></div>
+          <div><label style="display:block;font-size:.8125rem;font-weight:600;color:var(--navy);margin-bottom:.375rem">Email</label><input type="email" placeholder="you@example.com" style="width:100%;padding:.75rem 1rem;border:1.5px solid var(--border);border-radius:10px;font-size:.9rem;font-family:'DM Sans',sans-serif;outline:none"></div>
+        </div>
+        <div><label style="display:block;font-size:.8125rem;font-weight:600;color:var(--navy);margin-bottom:.375rem">Subject</label><input type="text" placeholder="How can we help?" style="width:100%;padding:.75rem 1rem;border:1.5px solid var(--border);border-radius:10px;font-size:.9rem;font-family:'DM Sans',sans-serif;outline:none"></div>
+        <div><label style="display:block;font-size:.8125rem;font-weight:600;color:var(--navy);margin-bottom:.375rem">Message</label><textarea placeholder="Your message..." rows="5" style="width:100%;padding:.75rem 1rem;border:1.5px solid var(--border);border-radius:10px;font-size:.9rem;font-family:'DM Sans',sans-serif;outline:none;resize:vertical"></textarea></div>
+        <button class="redeem-btn" style="padding:1rem;font-size:1rem">Send Message ✉️</button>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;margin-top:1.5rem">
+      <div style="background:#fff;border-radius:12px;border:1.5px solid var(--border);padding:1.25rem;text-align:center"><div style="font-size:1.5rem;margin-bottom:.5rem">📧</div><div style="font-size:.75rem;font-weight:700;color:var(--navy);margin-bottom:.25rem">Email</div><div style="font-size:.75rem;color:var(--muted)">info@airlinetopdeals.com</div></div>
+      <div style="background:#fff;border-radius:12px;border:1.5px solid var(--border);padding:1.25rem;text-align:center"><div style="font-size:1.5rem;margin-bottom:.5rem">💬</div><div style="font-size:.75rem;font-weight:700;color:var(--navy);margin-bottom:.25rem">WhatsApp</div><div style="font-size:.75rem;color:var(--muted)">+1 (555) 123-4567</div></div>
+      <div style="background:#fff;border-radius:12px;border:1.5px solid var(--border);padding:1.25rem;text-align:center"><div style="font-size:1.5rem;margin-bottom:.5rem">🕐</div><div style="font-size:.75rem;font-weight:700;color:var(--navy);margin-bottom:.25rem">Hours</div><div style="font-size:.75rem;color:var(--muted)">24/7 Online</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════ FOOTER ══════ -->
+<footer>
+  <div class="footer-main">
+    <div class="footer-brand">
+      <div class="logo" style="margin-bottom:1rem"><div class="logo-icon">✈️</div><div class="logo-text">AirlineTopDeals<span>Premium Travel Coupons</span></div></div>
+      <p class="footer-about">Your trusted source for airline coupons, flight deals, travel discounts, and attraction offers from the world's top airlines.</p>
+      <div class="footer-socials">
+        <button class="social-btn">f</button>
+        <button class="social-btn">𝕏</button>
+        <button class="social-btn">in</button>
+        <button class="social-btn">▶</button>
+        <button class="social-btn">📷</button>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul class="footer-links">
+        <li><a onclick="showPage('home')">Home</a></li>
+        <li><a onclick="showPage('deals')">All Deals</a></li>
+        <li><a onclick="showPage('stores')">Airlines</a></li>
+        <li><a onclick="showPage('attractions')">Attractions</a></li>
+        <li><a onclick="showPage('blog')">Travel News</a></li>
+        <li><a onclick="showPage('share')">Submit Deal</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Categories</h4>
+      <ul class="footer-links">
+        <li><a href="#">Airline Coupons</a></li>
+        <li><a href="#">Flight Deals</a></li>
+        <li><a href="#">Hotel Deals</a></li>
+        <li><a href="#">Vacation Packages</a></li>
+        <li><a href="#">Student Discounts</a></li>
+        <li><a href="#">Business Class</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul class="footer-links">
+        <li><a onclick="showPage('contact')">Contact Us</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms & Conditions</a></li>
+        <li><a onclick="showPage('login')">Login</a></li>
+        <li><a onclick="showPage('register')">Register</a></li>
+        <li><a href="#">Advertise</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2026 AirlineTopDeals.com — All rights reserved. Travel deals & coupons platform.</div>
+    <div class="footer-badges">
+      <span class="footer-badge">SSL Secured</span>
+      <span class="footer-badge">GDPR Compliant</span>
+    </div>
+  </div>
+</footer>
+
+<!-- WhatsApp FAB -->
+<button class="whatsapp-fab" title="Chat on WhatsApp">💬</button>
+
+<!-- ══════ COUPON MODAL ══════ -->
+<div class="modal-overlay" id="couponModal" onclick="closeModal(event)">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModalDirect()">✕</button>
+    <div style="text-align:center;margin-bottom:1.25rem">
+      <div style="font-size:2rem;margin-bottom:.5rem">🎟️</div>
+      <h3 id="modalTitle">Your Coupon Code</h3>
+      <p id="modalSubtitle" style="font-size:.875rem;color:var(--muted);margin-top:.25rem"></p>
+    </div>
+    <div class="coupon-code-box">
+      <div class="coupon-code-text" id="modalCode">LOADING</div>
+    </div>
+    <button class="copy-btn" onclick="copyCode()">📋 Copy Code</button>
+    <div class="copied-msg" id="copiedMsg">✅ Copied to clipboard!</div>
+    <div style="background:var(--bg);border-radius:10px;padding:.875rem;margin-bottom:1rem">
+      <div style="font-size:.75rem;font-weight:700;color:var(--navy);margin-bottom:.375rem">💡 How to Use</div>
+      <div style="font-size:.8rem;color:var(--muted);line-height:1.6">1. Click "Redeem Deal" to visit the airline website<br>2. Select your flights and add to cart<br>3. Paste the coupon code at checkout<br>4. Enjoy your savings!</div>
+    </div>
+    <div style="display:flex;gap:.5rem;margin-bottom:.875rem">
+      <div style="flex:1;text-align:center;background:var(--bg);border-radius:8px;padding:.625rem">
+        <div id="modalDiscount" style="font-family:'Sora',sans-serif;font-size:1.25rem;font-weight:800;color:var(--orange)">--</div>
+        <div style="font-size:.7rem;color:var(--muted)">Discount</div>
+      </div>
+      <div style="flex:1;text-align:center;background:var(--bg);border-radius:8px;padding:.625rem">
+        <div style="font-family:'Sora',sans-serif;font-size:1.25rem;font-weight:800;color:var(--green)">90%</div>
+        <div style="font-size:.7rem;color:var(--muted)">Success Rate</div>
+      </div>
+      <div style="flex:1;text-align:center;background:var(--bg);border-radius:8px;padding:.625rem">
+        <div style="font-family:'Sora',sans-serif;font-size:1.25rem;font-weight:800;color:var(--blue)">Jun 30</div>
+        <div style="font-size:.7rem;color:var(--muted)">Expires</div>
+      </div>
+    </div>
+    <button class="modal-redeem-btn">🚀 Redeem This Deal →</button>
+  </div>
+</div>
+
+<script>
+// Page navigation
+function showPage(name){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-link').forEach(l=>l.classList.remove('active'));
+  const pg = document.getElementById('page-'+name);
+  if(pg){pg.classList.add('active');window.scrollTo(0,0);}
+  const nl = document.querySelector(`.nav-link[onclick*="'${name}'"]`);
+  if(nl) nl.classList.add('active');
+}
+
+// Filter buttons
+function setFilter(btn){
+  btn.closest('.deals-filters').querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+// Slider
+let slideIndex = 0;
+const cardWidth = 276;
+const gap = 20;
+function updateSlider(){
+  const track = document.getElementById('sliderTrack');
+  if(!track) return;
+  const offset = slideIndex * (cardWidth + gap);
+  track.style.transform = `translateX(-${offset}px)`;
+  document.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('active', i===slideIndex));
+}
+function slideLeft(){
+  slideIndex = Math.max(0, slideIndex - 1);
+  updateSlider();
+}
+function slideRight(){
+  const track = document.getElementById('sliderTrack');
+  if(!track) return;
+  const maxSlide = track.children.length - 3;
+  slideIndex = Math.min(maxSlide, slideIndex + 1);
+  updateSlider();
+}
+function goToSlide(i){
+  slideIndex = i;
+  updateSlider();
+}
+setInterval(()=>{
+  const track = document.getElementById('sliderTrack');
+  if(!track) return;
+  const maxSlide = track.children.length - 3;
+  slideIndex = slideIndex >= maxSlide ? 0 : slideIndex + 1;
+  updateSlider();
+}, 4000);
+
+// Modal
+let currentCode = '';
+function openCouponModal(code, airline, title, discount){
+  currentCode = code;
+  document.getElementById('modalTitle').textContent = title;
+  document.getElementById('modalSubtitle').textContent = airline + ' — Limited Time Offer';
+  document.getElementById('modalCode').textContent = code;
+  document.getElementById('modalDiscount').textContent = '-' + discount + '%';
+  document.getElementById('copiedMsg').style.display = 'none';
+  document.getElementById('couponModal').classList.add('open');
+}
+function closeModal(e){
+  if(e.target === document.getElementById('couponModal'))
+    document.getElementById('couponModal').classList.remove('open');
+}
+function closeModalDirect(){
+  document.getElementById('couponModal').classList.remove('open');
+}
+function copyCode(){
+  navigator.clipboard.writeText(currentCode).catch(()=>{});
+  const msg = document.getElementById('copiedMsg');
+  msg.style.display = 'block';
+  setTimeout(()=>msg.style.display='none', 2500);
+}
+document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeModalDirect(); });
+</script>
+</body>
+</html>
